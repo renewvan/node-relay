@@ -1,0 +1,19 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Fake secrets for config validation
+        run: cp secrets.yaml.example secrets.yaml
+      - uses: esphome/build-action@v6
+        with:
+          yaml-file: relay-node.yaml
+          version: latest
