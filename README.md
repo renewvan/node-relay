@@ -35,13 +35,13 @@ Pi, dashboard, or broker down. There is no MQTT command topic for
 relays in v0 (read-only dashboard, no tap-to-toggle); nothing subscribes
 to control a relay remotely.
 
-## Van bus MQTT interface
+## Renewvan bus MQTT interface
 
 Every relay is `internal: true` (no Home Assistant/ESPHome-API
 frontend, no discovery — `mqtt: { discovery: false }` too). Its only
 MQTT presence is an explicit `mqtt.publish` in `on_turn_on`/
 `on_turn_off`, which publishes retained `"true"`/`"false"` directly to
-`van/relay/<id>/state` on every state change — matching the v0.1
+`renewvan/relay/<id>/state` on every state change — matching the v0.1
 `relay.schema.json` boolean `state` field.
 
 (ESPHome's built-in `payload_on`/`payload_off` switch options — as
@@ -50,7 +50,7 @@ ESPHome's actual `MQTT Component` base config; only `state_topic`/
 `command_topic` do, and those still emit ESPHome's native `"ON"`/`"OFF"`
 strings, not `"true"`/`"false"`. Explicit `mqtt.publish` actions produce
 the exact same wire behavior the ticket specifies — retained `"true"`/
-`"false"` on `van/relay/<id>/state` on every change — via a documented
+`"false"` on `renewvan/relay/<id>/state` on every change — via a documented
 ESPHome mechanism instead of a nonexistent config key.)
 
 ## Customizing channels
@@ -77,11 +77,11 @@ in `secrets.yaml`.
 ## Verifying
 
 1. With the ESP32 flashed and powered, physically disconnect it from
-   WiFi/the van bus (or just don't configure `wifi_ssid` yet) — confirm
+   WiFi/the renewvan bus (or just don't configure `wifi_ssid` yet) — confirm
    each physical button still toggles its relay.
-2. Reconnect to the van bus, press a button, and confirm
-   `van/relay/<id>/state` publishes `"true"`/`"false"` (retained) —
-   e.g. `mosquitto_sub -h <broker> -t 'van/relay/#' -v`.
+2. Reconnect to the renewvan bus, press a button, and confirm
+   `renewvan/relay/<id>/state` publishes `"true"`/`"false"` (retained) —
+   e.g. `mosquitto_sub -h <broker> -t 'renewvan/relay/#' -v`.
 
 ## CI
 

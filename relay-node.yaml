@@ -15,7 +15,7 @@
 #   frontend, no discovery) — its only MQTT presence is the explicit
 #   `mqtt.publish` in `on_turn_on`/`on_turn_off` below, which publishes
 #   the literal string `"true"`/`"false"` (matching the v0.1 schema's
-#   boolean `state` field) retained directly to `van/relay/<id>/state`
+#   boolean `state` field) retained directly to `renewvan/relay/<id>/state`
 #   on every state change.
 #
 #   NOTE: the ticket 03 decision doc describes this as a `state_topic`
@@ -26,11 +26,11 @@
 #   `state_topic`/`command_topic` (which still emit ESPHome's native
 #   "ON"/"OFF" payloads). Explicit `mqtt.publish` actions are the
 #   correct mechanism to get the literal `"true"`/`"false"` payload the
-#   schema requires; behavior (retained `van/relay/<id>/state`, "true"/
+#   schema requires; behavior (retained `renewvan/relay/<id>/state`, "true"/
 #   "false" on every change) matches the ticket exactly.
 # - No command_topic on the van bus: the relay has no command topic in
 #   v0 (read-only dashboard, no tap-to-toggle). ESPHome's own default
-#   command topic (outside the `van/` namespace, unused since switches
+#   command topic (outside the `renewvan/` namespace, unused since switches
 #   are `internal: true`) is never wired to anything on the van bus.
 #
 # Channel ids/pins below are the reference wiring for this node; rename
@@ -92,9 +92,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/lights_ceiling/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_ceiling/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/lights_ceiling/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_ceiling/state, payload: "false", retain: true }
 
   # --- Channel 2: lights_reading -------------------------------------------
   - platform: gpio
@@ -104,9 +104,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/lights_reading/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_reading/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/lights_reading/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_reading/state, payload: "false", retain: true }
 
   # --- Channel 3: lights_kitchen --------------------------------------------
   - platform: gpio
@@ -116,9 +116,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/lights_kitchen/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_kitchen/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/lights_kitchen/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_kitchen/state, payload: "false", retain: true }
 
   # --- Channel 4: lights_bathroom -------------------------------------------
   - platform: gpio
@@ -128,9 +128,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/lights_bathroom/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_bathroom/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/lights_bathroom/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_bathroom/state, payload: "false", retain: true }
 
   # --- Channel 5: lights_awning ---------------------------------------------
   - platform: gpio
@@ -140,9 +140,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/lights_awning/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_awning/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/lights_awning/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/lights_awning/state, payload: "false", retain: true }
 
   # --- Channel 6: fan_vent ---------------------------------------------------
   - platform: gpio
@@ -152,9 +152,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/fan_vent/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/fan_vent/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/fan_vent/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/fan_vent/state, payload: "false", retain: true }
 
   # --- Channel 7: usb_outlets -------------------------------------------
   - platform: gpio
@@ -164,9 +164,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/usb_outlets/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/usb_outlets/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/usb_outlets/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/usb_outlets/state, payload: "false", retain: true }
 
   # --- Channel 8: aux_1 ------------------------------------------------------
   - platform: gpio
@@ -176,9 +176,9 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     internal: true
     on_turn_on:
-      - mqtt.publish: { topic: van/relay/aux_1/state, payload: "true", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/aux_1/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: van/relay/aux_1/state, payload: "false", retain: true }
+      - mqtt.publish: { topic: renewvan/relay/aux_1/state, payload: "false", retain: true }
 
 # One physical momentary button per channel, wired to GND (internal
 # pull-up, inverted). `on_press` toggles the paired relay entirely
