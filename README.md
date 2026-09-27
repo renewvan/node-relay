@@ -1,4 +1,4 @@
-# driver-relay
+# node-relay
 
 ESPHome YAML config for the 8-channel switched-load relay node (lights,
 fan, USB outlets, etc.) — no custom firmware. Per

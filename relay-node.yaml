@@ -1,11 +1,11 @@
 ---
-# driver-relay: 8-channel switched-load relay node.
+# node-relay: 8-channel switched-load relay node.
 #
 # Per .scratch/renewvan-hub-v0-build/issues/03-esp32-relay-node-config.md
 # and the interface decision in
 # .scratch/renewvan-hub-v0/issues/03-esp32-relay-node-driver-interface.md:
 #
-# - No custom firmware — this is the whole driver.
+# - No custom firmware — this is the whole node.
 # - Each channel: a physical button wired to an ESP32 GPIO input, paired
 #   with a relay output on the same GPIO pair, switched by a fully local
 #   `on_press` automation (binary_sensor -> switch.toggle). This runs
@@ -74,7 +74,7 @@ api:
   encryption:
     key: !secret api_encryption_key
 
-# The van bus — same Mosquitto every other driver publishes to.
+# The van bus — same Mosquitto every other node publishes to.
 # discovery: false: no Home Assistant autodiscovery in the v0 stack.
 mqtt:
   broker: !secret mqtt_broker
