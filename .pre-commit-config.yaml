@@ -1,0 +1,14 @@
+# Per renewvan/hub's docs/adr/0007-per-language-formatting-linting-convention.md
+# "config-only repos" case: no application code here (relay-node.yaml is
+# ESPHome config, flashed once, not a program this repo builds/tests), so
+# Prettier formatting is all there is -- no linter to add.
+#
+# Install once: `pip install pre-commit && pre-commit install`.
+# (uses pre-commit's own isolated node env -- needs a system `node` on
+# PATH, nothing else to install yourself.)
+repos:
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.9.9
+    hooks:
+      - id: prettier
+        types_or: [markdown, yaml]

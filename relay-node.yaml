@@ -130,7 +130,8 @@ switch:
     on_turn_on:
       - mqtt.publish: { topic: renewvan/relay/lights_bathroom/state, payload: "true", retain: true }
     on_turn_off:
-      - mqtt.publish: { topic: renewvan/relay/lights_bathroom/state, payload: "false", retain: true }
+      - mqtt.publish:
+          { topic: renewvan/relay/lights_bathroom/state, payload: "false", retain: true }
 
   # --- Channel 5: lights_awning ---------------------------------------------
   - platform: gpio

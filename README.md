@@ -14,16 +14,16 @@ from the hub's own lifecycle). Each channel also has a physical
 momentary/toggle button wired to its own GPIO input (pulled up
 internally, switched to GND when pressed).
 
-| Channel | Default id | Relay GPIO | Button GPIO |
-|---|---|---|---|
-| 1 | `lights_ceiling` | GPIO4 | GPIO14 |
-| 2 | `lights_reading` | GPIO5 | GPIO15 |
-| 3 | `lights_kitchen` | GPIO13 | GPIO21 |
-| 4 | `lights_bathroom` | GPIO16 | GPIO22 |
-| 5 | `lights_awning` | GPIO17 | GPIO25 |
-| 6 | `fan_vent` | GPIO18 | GPIO26 |
-| 7 | `usb_outlets` | GPIO19 | GPIO27 |
-| 8 | `aux_1` | GPIO23 | GPIO32 |
+| Channel | Default id        | Relay GPIO | Button GPIO |
+| ------- | ----------------- | ---------- | ----------- |
+| 1       | `lights_ceiling`  | GPIO4      | GPIO14      |
+| 2       | `lights_reading`  | GPIO5      | GPIO15      |
+| 3       | `lights_kitchen`  | GPIO13     | GPIO21      |
+| 4       | `lights_bathroom` | GPIO16     | GPIO22      |
+| 5       | `lights_awning`   | GPIO17     | GPIO25      |
+| 6       | `fan_vent`        | GPIO18     | GPIO26      |
+| 7       | `usb_outlets`     | GPIO19     | GPIO27      |
+| 8       | `aux_1`           | GPIO23     | GPIO32      |
 
 ## Switching path — fully local, no MQTT command topic
 
